@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="/private/var/root/AndroidStudioProjects/KotlinMall" />
+            <option value="/private/var/root/AndroidStudioProjects/KotlinMall/App" />
+            <option value="/private/var/root/AndroidStudioProjects/KotlinMall/BaseLibrary" />
+            <option value="/private/var/root/AndroidStudioProjects/KotlinMall/Provider" />
+            <option value="/private/var/root/AndroidStudioProjects/KotlinMall/UserCenter" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
