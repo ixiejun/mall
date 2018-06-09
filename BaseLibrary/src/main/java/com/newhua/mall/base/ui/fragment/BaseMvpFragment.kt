@@ -1,6 +1,7 @@
-package com.newhua.mall.base.ui.activity
+package com.newhua.mall.base.ui.fragment
 
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import com.newhua.mall.base.common.BaseApplication
 import com.newhua.mall.base.injection.component.ActivityComponent
 import com.newhua.mall.base.injection.component.DaggerActivityComponent
@@ -9,11 +10,10 @@ import com.newhua.mall.base.injection.module.LifecycleProviderModule
 import com.newhua.mall.base.presenter.BasePresenter
 import com.newhua.mall.base.presenter.view.BaseView
 import com.newhua.mall.base.widgets.ProgressLoading
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
-abstract class BaseMvpActivity<T:BasePresenter<*>> : BaseActivity(), BaseView {
-
+abstract class BaseMvpFragment<T:BasePresenter<*>> : BaseFragment(), BaseView {
     @Inject
     lateinit var mPresenter:T
 
@@ -26,7 +26,7 @@ abstract class BaseMvpActivity<T:BasePresenter<*>> : BaseActivity(), BaseView {
         initActivityInjection()
         injectComponent()
 
-        mLoadingDialog = ProgressLoading.create(this)
+        //mLoadingDialog = ProgressLoading.create(context)
     }
 
     /*
@@ -36,8 +36,8 @@ abstract class BaseMvpActivity<T:BasePresenter<*>> : BaseActivity(), BaseView {
 
     private fun initActivityInjection() {
         activityComponent = DaggerActivityComponent.builder()
-                .appComponent((application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this))
+                .appComponent((activity?.application as BaseApplication).appComponent)
+                .activityModule(ActivityModule(activity as FragmentActivity))
                 .lifecycleProviderModule(LifecycleProviderModule(this))
                 .build()
     }

@@ -5,6 +5,7 @@ import android.view.View
 import com.newhua.mall.base.common.AppManager
 import com.newhua.mall.base.ext.onClick
 import com.newhua.mall.base.ui.activity.BaseMvpActivity
+import com.newhua.mall.base.widgets.VerifyButton
 import com.newhua.mall.user.R
 import com.newhua.mall.user.injection.component.DaggerUserComponent
 import com.newhua.mall.user.injection.module.UserModule
@@ -32,6 +33,11 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
                     mPasswordEditText.text.toString(),
                     mVerifyCodeEditText.text.toString())
         }
+
+        mVerifyCodeBtn.onClick {
+            mVerifyCodeBtn.requestSendVerifyNumber()
+        }
+
     }
 
     /*

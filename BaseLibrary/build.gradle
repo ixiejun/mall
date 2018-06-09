@@ -28,13 +28,21 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+    // Support-v4 (only Anko Commons)
+    implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
+
+    // Appcompat-v7 (only Anko Commons)
+    implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
 
     // RxKotlin and RxAndroid
     compile "io.reactivex:rxkotlin:$rx_kotlin_version"
@@ -54,6 +62,12 @@ dependencies {
     //RxLifecycle
     compile "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
     compile "com.trello:rxlifecycle-components:$rx_lifecycle_version"
+
+    //RecycleView
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    //Glide
+    compile "com.github.bumptech.glide:glide:$glide_version"
 }
 repositories {
     mavenCentral()
