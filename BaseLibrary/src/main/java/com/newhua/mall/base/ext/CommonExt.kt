@@ -1,10 +1,13 @@
 package com.newhua.mall.base.ext
 
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import com.newhua.mall.base.data.protocol.BaseResponse
 import com.newhua.mall.base.rx.BaseFunc
 import com.newhua.mall.base.rx.BaseFuncBoolean
 import com.newhua.mall.base.rx.BaseSubscriber
+import com.newhua.mall.base.widgets.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -32,3 +35,13 @@ fun View.onClick(listener: View.OnClickListener) {
 fun View.onClick(method: ()->Unit) {
     this.setOnClickListener { method() }
 }
+
+fun Button.enable(et: EditText, method: () -> Boolean) {
+    val btn = this
+    et.addTextChangedListener(object : DefaultTextWatcher() {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            btn.isEnabled = method()
+        }
+    })
+}
+

@@ -44,6 +44,10 @@ android {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -64,7 +68,10 @@ dependencies {
     // Appcompat-v7 (only Anko Commons)
     implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
 
+    //Dagger2
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //ARouter
+    //kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 
 
     /*// Anko Layouts
