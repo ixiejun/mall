@@ -23,14 +23,14 @@ class UserRepository @Inject constructor() {
     /*
         忘记密码
      */
-    fun forgetPwd(mobile:String,verifyCode:String): Observable<BaseResponse<String>>{
+    fun forgetPwd(mobile:String, verifyCode:String): Observable<BaseResponse<String>>{
         return RetrofitFactory.instance.create(UserApi::class.java).forgetPwd(ForgetPwdReq(mobile,verifyCode))
     }
 
     /*
         重置密码
      */
-    fun resetPwd(mobile:String,pwd:String): Observable<BaseResponse<String>>{
+    fun resetPwd(mobile:String, pwd:String): Observable<BaseResponse<String>>{
         return RetrofitFactory.instance.create(UserApi::class.java).resetPwd(ResetPwdReq(mobile,pwd))
     }
 

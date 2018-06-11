@@ -3,8 +3,10 @@ package com.newhua.mall.user.injection.component
 import com.newhua.mall.base.injection.PerComponentScope
 import com.newhua.mall.base.injection.component.ActivityComponent
 import com.newhua.mall.user.injection.module.UserModule
+import com.newhua.mall.user.ui.activity.ForgetPwdActivity
 import com.newhua.mall.user.ui.activity.LoginActivity
 import com.newhua.mall.user.ui.activity.RegisterActivity
+import com.newhua.mall.user.ui.activity.ResetPwdActivity
 import dagger.Component
 
 @PerComponentScope
@@ -12,4 +14,6 @@ import dagger.Component
 interface UserComponent {
     fun inject(activity: RegisterActivity)
     fun inject(activity: LoginActivity)
+    fun inject(activity: ForgetPwdActivity)
+    fun inject(activity: ResetPwdActivity)
 }

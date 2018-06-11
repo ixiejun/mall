@@ -40,6 +40,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         mLoginBtn.onClick(this)
 
         mHeaderBar.getRightView().onClick(this)
+        mForgetPwdTv.onClick(this)
 
     }
 
