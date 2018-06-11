@@ -11,16 +11,22 @@ import com.jph.takephoto.app.TakePhoto
 import com.jph.takephoto.app.TakePhotoImpl
 import com.jph.takephoto.compress.CompressConfig
 import com.jph.takephoto.model.TResult
+import com.newhua.mall.base.common.BaseConstant
 import com.newhua.mall.base.ext.onClick
 import com.newhua.mall.base.ui.activity.BaseMvpActivity
 import com.newhua.mall.base.utils.DateUtils
+import com.newhua.mall.base.utils.GlideUtils
 import com.newhua.mall.user.R
 import com.newhua.mall.user.injection.component.DaggerUserComponent
 import com.newhua.mall.user.injection.module.UserModule
 import com.newhua.mall.user.presenter.UserInfoPresenter
 import com.newhua.mall.user.presenter.view.UserInfoView
+import com.qiniu.android.http.ResponseInfo
+import com.qiniu.android.storage.UpCompletionHandler
+import com.qiniu.android.storage.UploadManager
 import kotlinx.android.synthetic.main.activity_user_info.*
 import org.jetbrains.anko.toast
+import org.json.JSONObject
 import java.io.File
 
 /**
@@ -31,6 +37,14 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Tak
     private lateinit var mTakePhoto: TakePhoto
 
     private lateinit var mTempFile: File
+
+    private val mUploadManager: UploadManager by lazy {
+        UploadManager()
+    }
+
+    private var mLocalFile: String? = null
+
+    private var mRemoteFile: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +98,9 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Tak
     override fun takeSuccess(result: TResult?) {
         Log.d("TakePhoto", result?.image?.originalPath)
         Log.d("TakePhoto", result?.image?.compressPath)
+
+        mLocalFile = result?.image?.compressPath
+        mPresenter.getUploadToken()
     }
 
     override fun takeCancel() {
@@ -108,5 +125,17 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Tak
         }
 
         this.mTempFile = File(filesDir, tempFileName)
+    }
+
+    override fun onGetUploadTokenResult(result: String) {
+        mUploadManager.put(mLocalFile, null, result, object: UpCompletionHandler{
+            override fun complete(key: String?, info: ResponseInfo?, response: JSONObject?) {
+                mRemoteFile = BaseConstant.IMAGE_SERVER_ADDRESS + response?.get("hash")
+
+                Log.d("test", mRemoteFile)
+
+                GlideUtils.loadUrlImage(this@UserInfoActivity, mRemoteFile!!, mUserIconIv)
+            }
+        }, null)
     }
 }
