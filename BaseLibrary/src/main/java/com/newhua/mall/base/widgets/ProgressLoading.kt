@@ -6,6 +6,7 @@ import android.graphics.drawable.AnimationDrawable
 import android.view.Gravity
 import android.widget.ImageView
 import com.newhua.mall.base.R
+import org.jetbrains.anko.find
 
 class ProgressLoading private constructor(context: Context, themeResId: Int) : Dialog(context, themeResId) {
     companion object {
@@ -24,7 +25,7 @@ class ProgressLoading private constructor(context: Context, themeResId: Int) : D
 
             mDialog.window.attributes = lp
 
-            val loadingView = mDialog.findViewById<ImageView>(R.id.iv_loading)
+            val loadingView = mDialog.find<ImageView>(R.id.iv_loading)
             animDrawable = loadingView.background as AnimationDrawable
 
             return mDialog
