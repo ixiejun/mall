@@ -80,6 +80,9 @@ dependencies {
 
     //底部导航
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'
+
+    //Banner
+    compile 'com.youth.banner:banner:1.4.10'  //最新版本
 }
 repositories {
     mavenCentral()

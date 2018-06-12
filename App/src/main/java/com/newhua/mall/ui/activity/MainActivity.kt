@@ -3,10 +3,8 @@ package com.newhua.mall.ui.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.newhua.mall.R
+import com.newhua.mall.ui.fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,12 +15,12 @@ class MainActivity : AppCompatActivity() {
         mBottomNavBar.checkMsgBadge(false)
         mBottomNavBar.checkCartBadge(20)
 
-        Observable.timer(2, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({mBottomNavBar.checkMsgBadge(true)})
+        initView()
+    }
 
-        Observable.timer(5, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({mBottomNavBar.checkCartBadge(0)})
+    private fun initView() {
+        val manager = supportFragmentManager.beginTransaction()
+        manager.replace(R.id.mContaier, HomeFragment())
+        manager.commit()
     }
 }
