@@ -3,10 +3,12 @@ package com.newhua.mall.base.ext
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.newhua.mall.base.data.protocol.BaseResponse
 import com.newhua.mall.base.rx.BaseFunc
 import com.newhua.mall.base.rx.BaseFuncBoolean
 import com.newhua.mall.base.rx.BaseSubscriber
+import com.newhua.mall.base.utils.GlideUtils
 import com.newhua.mall.base.widgets.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import rx.Observable

@@ -26,7 +26,7 @@
             android:layout_marginTop="@dimen/common_margin_small"
             android:layout_marginRight="@dimen/common_margin_middle"
             android:layout_marginBottom="@dimen/common_margin_small"/>
-    <!--<TextView
+    <TextView
             android:textSize="@dimen/text_small_size"
             android:textStyle="bold"
             android:textColor="@color/text_light_dark"
@@ -46,15 +46,4 @@
             android:paddingRight="@dimen/common_padding"
             android:paddingBottom="@dimen/common_padding_small"
             android:layout_height="wrap_content"/>
-    <me.crosswall.lib.coverflow.core.PagerContainer
-            android:id="@+id/mTopicContainer"
-            style="@style/MatchMatch"
-            android:background="@drawable/home_container_bg">
-        <android.support.v4.view.ViewPager
-                android:id="@+id/mTopicPager"
-                android:layout_gravity="center"
-                android:layout_width="200.0dip"
-                android:layout_height="160.0dip"
-                android:overScrollMode="never"/>
-    </me.crosswall.lib.coverflow.core.PagerContainer>-->
 </LinearLayout>
