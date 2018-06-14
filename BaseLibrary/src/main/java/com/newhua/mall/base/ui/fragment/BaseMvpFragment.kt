@@ -26,7 +26,7 @@ abstract class BaseMvpFragment<T:BasePresenter<*>> : BaseFragment(), BaseView {
         initActivityInjection()
         injectComponent()
 
-        //mLoadingDialog = ProgressLoading.create(context)
+        mLoadingDialog = ProgressLoading.create(context)
     }
 
     /*

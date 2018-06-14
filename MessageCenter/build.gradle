@@ -41,4 +41,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
     // Appcompat-v7 (only Anko Commons)
     implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
+
+    if (isUserModule.toBoolean()) {
+        compile project(':UserCenter')
+    }
 }
