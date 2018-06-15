@@ -77,6 +77,9 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, BGAR
 
     }
 
+    /**
+     * 获取列表后回调
+     */
     override fun onGetGoodsListResult(result: MutableList<Goods>?) {
         mRefreshLayout.endLoadingMore()
         mRefreshLayout.endRefreshing()
@@ -94,6 +97,9 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), GoodsListView, BGAR
         }
     }
 
+    /**
+     * 初始化刷新视图
+     */
     private fun initRefreshLayout() {
         mRefreshLayout.setDelegate(this)
         val viewHolder = BGANormalRefreshViewHolder(this, true)

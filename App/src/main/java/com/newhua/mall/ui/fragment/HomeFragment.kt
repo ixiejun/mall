@@ -5,7 +5,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.newhua.goods.ui.activity.SearchGoodsActivity
 import com.newhua.mall.R
+import com.newhua.mall.base.ext.onClick
 import com.newhua.mall.base.ui.fragment.BaseFragment
 import com.newhua.mall.base.widgets.BannerImageLoader
 import com.newhua.mall.common.*
@@ -15,6 +17,7 @@ import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
+import org.jetbrains.anko.support.v4.startActivity
 
 class HomeFragment : BaseFragment() {
 
@@ -41,6 +44,9 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initNews() {
+        mSearchEt.onClick {
+            startActivity<SearchGoodsActivity>()
+        }
         //公告
         mNewsFlipperView.setData(arrayOf("夏日炎炎，第一波福利还有30秒到达战场", "新用户立领1000元优惠券"))
     }
