@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.kennyc.view.MultiStateView
 import com.newhua.goods.R
+import com.newhua.goods.common.GoodsConstant
 import com.newhua.goods.data.protocol.Category
 import com.newhua.goods.injection.component.DaggerCategoryComponent
 import com.newhua.goods.injection.module.CategoryModule
 import com.newhua.goods.presenter.CategoryPresenter
 import com.newhua.goods.presenter.view.CategoryView
+import com.newhua.goods.ui.activity.GoodsActivity
 import com.newhua.goods.ui.adapter.SecondCategoryAdapter
 import com.newhua.goods.ui.adapter.TopCategoryAdapter
 import com.newhua.mall.base.ext.setVisible
@@ -21,7 +23,7 @@ import com.newhua.mall.base.ext.startLoading
 import com.newhua.mall.base.ui.adapter.BaseRecyclerViewAdapter
 import com.newhua.mall.base.ui.fragment.BaseMvpFragment
 import kotlinx.android.synthetic.main.fragment_category.*
-import org.jetbrains.anko.find
+import org.jetbrains.anko.support.v4.startActivity
 
 /*
     商品分类 Fragment
@@ -78,7 +80,7 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
         mSecondCategoryRv.adapter = secondAdapter
         secondAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Category> {
             override fun onItemClick(item: Category, position: Int) {
-                //startActivity<GoodsActivity>(GoodsConstant.KEY_CATEGORY_ID  to item.id)
+                startActivity<GoodsActivity>(GoodsConstant.KEY_CATEGORY_ID  to item.id)
             }
         })
 
