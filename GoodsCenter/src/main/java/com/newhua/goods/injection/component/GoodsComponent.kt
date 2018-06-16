@@ -4,6 +4,7 @@ import com.newhua.goods.injection.module.CartModule
 import com.newhua.goods.injection.module.GoodsModule
 import com.newhua.goods.ui.activity.GoodsActivity
 import com.newhua.goods.ui.fragment.GoodsDetailTabOneFragment
+import com.newhua.goods.ui.fragment.GoodsDetailTabTwoFragment
 import com.newhua.mall.base.injection.PerComponentScope
 import com.newhua.mall.base.injection.component.ActivityComponent
 import dagger.Component
@@ -16,4 +17,5 @@ import dagger.Component
 interface GoodsComponent {
     fun inject(activity: GoodsActivity)
     fun inject(fragment: GoodsDetailTabOneFragment)
+    fun inject(fragment: GoodsDetailTabTwoFragment)
 }
