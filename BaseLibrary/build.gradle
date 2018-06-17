@@ -95,6 +95,9 @@ dependencies {
 
     //Kotlin Bus
     compile 'com.eightbitlab:rxbus:1.0.2'
+
+    //FlowLayout
+    compile 'com.zhy:flowlayout-lib:1.0.3'
 }
 repositories {
     mavenCentral()
