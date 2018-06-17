@@ -2,9 +2,11 @@ package com.newhua.mall.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.newhua.mall.base.ext.enable
 import com.newhua.mall.base.ext.onClick
 import com.newhua.mall.base.ui.activity.BaseMvpActivity
+import com.newhua.mall.provider.router.RouterPath
 import com.newhua.mall.user.R
 import com.newhua.mall.user.R.id.*
 import com.newhua.mall.user.data.protocol.UserInfo
@@ -20,6 +22,7 @@ import org.jetbrains.anko.toast
 /*
     登录界面
  */
+@Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 

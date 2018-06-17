@@ -98,6 +98,9 @@ dependencies {
 
     //FlowLayout
     compile 'com.zhy:flowlayout-lib:1.0.3'
+
+    //ARouter
+    compile "com.alibaba:arouter-api:$arouter_api_version"
 }
 repositories {
     mavenCentral()
