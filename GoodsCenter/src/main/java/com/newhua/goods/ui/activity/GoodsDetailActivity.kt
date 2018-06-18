@@ -15,6 +15,7 @@ import com.newhua.mall.base.ui.activity.BaseActivity
 import com.newhua.mall.base.utils.AppPrefsUtils
 import com.newhua.mall.provider.common.afterLogin
 import kotlinx.android.synthetic.main.activity_goods_detail.*
+import org.jetbrains.anko.startActivity
 import q.rorbin.badgeview.QBadgeView
 
 class GoodsDetailActivity: BaseActivity() {
@@ -39,6 +40,14 @@ class GoodsDetailActivity: BaseActivity() {
             afterLogin {
                 Bus.send(AddCartEvent())
             }
+        }
+
+        mEnterCartTv.onClick {
+            startActivity<CartActivity>()
+        }
+
+        mLeftIv.onClick {
+            finish()
         }
 
         mCartBadge = QBadgeView(this)
