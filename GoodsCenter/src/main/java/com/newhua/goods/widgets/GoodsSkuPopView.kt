@@ -11,6 +11,7 @@ import com.eightbitlab.rxbus.Bus
 import com.newhua.goods.R
 import com.newhua.goods.common.GoodsConstant
 import com.newhua.goods.data.protocol.GoodsSku
+import com.newhua.goods.event.AddCartEvent
 import com.newhua.goods.event.SkuChangedEvent
 import com.newhua.goods.getEditText
 import com.newhua.mall.base.ext.loadUrl
@@ -72,6 +73,11 @@ class GoodsSkuPopView(context: Activity) : PopupWindow(context), View.OnClickLis
                     }
                 }
         )
+
+        mRootView.mAddCartBtn.onClick {
+            Bus.send(AddCartEvent())
+            dismiss()
+        }
 
     }
 

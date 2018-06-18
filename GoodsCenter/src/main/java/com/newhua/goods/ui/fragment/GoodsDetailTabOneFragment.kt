@@ -15,6 +15,7 @@ import com.newhua.goods.data.protocol.Goods
 import com.newhua.goods.event.AddCartEvent
 import com.newhua.goods.event.GoodsDetailImageEvent
 import com.newhua.goods.event.SkuChangedEvent
+import com.newhua.goods.event.UpdateCartSizeEvent
 import com.newhua.goods.injection.component.DaggerGoodsComponent
 import com.newhua.goods.injection.module.GoodsModule
 import com.newhua.goods.presenter.GoodsDetailPresenter
@@ -29,6 +30,7 @@ import com.newhua.mall.base.widgets.BannerImageLoader
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * 商品详情TabOne
@@ -151,13 +153,21 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
         Bus.observe<AddCartEvent>()
                 .subscribe{
-
+                    addCart()
                 }.registerInBus(this)
     }
 
+    //加入购物车
     private fun addCart() {
         mCurGoods?.let {
-            mPresenter
+            mPresenter.addCart(
+                    it.id,
+                    it.goodsDesc,
+                    it.goodsDefaultIcon,
+                    it.goodsDefaultPrice,
+                    mSkuPop.getSelectedCount(),
+                    mSkuPop.getSelectSku()
+            )
         }
     }
 
@@ -166,7 +176,8 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         Bus.unregister(this)
     }
 
+    //购物车回调
     override fun onAddCartResult(result: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Bus.send(UpdateCartSizeEvent())
     }
 }

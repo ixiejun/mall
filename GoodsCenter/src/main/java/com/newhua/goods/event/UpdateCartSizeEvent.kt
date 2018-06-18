@@ -1,4 +1,3 @@
 package com.newhua.goods.event
 
-class SkuChangedEvent {
-}
+class UpdateCartSizeEvent
