@@ -15,7 +15,7 @@ interface ShipAddressService {
 
     /*
     获取收货地址列表
- */
+    */
     fun getShipAddressList(): Observable<MutableList<ShipAddress>?>
 
     /*

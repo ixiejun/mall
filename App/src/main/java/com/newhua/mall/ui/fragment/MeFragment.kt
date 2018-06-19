@@ -14,6 +14,7 @@ import com.newhua.mall.provider.common.isLogined
 import com.newhua.mall.ui.activity.SettingActivity
 import com.newhua.mall.user.ui.activity.LoginActivity
 import com.newhua.mall.user.ui.activity.UserInfoActivity
+import com.newhua.order.ui.activity.ShipAddressActivity
 import kotlinx.android.synthetic.main.fragment_me.*
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -82,6 +83,10 @@ class MeFragment : BaseFragment(), View.OnClickListener {
                 } else {
                     startActivity<LoginActivity>()
                 }
+            }
+
+            R.id.mAddressTv -> {
+                startActivity<ShipAddressActivity>()
             }
 
             R.id.mSettingTv -> {

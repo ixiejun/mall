@@ -18,6 +18,7 @@ import com.newhua.order.presenter.OrderConfirmPresenter
 import com.newhua.order.presenter.view.OrderConfirmView
 import com.newhua.order.ui.adapter.OrderGoodsAdapter
 import kotlinx.android.synthetic.main.activity_order_confirm.*
+import org.jetbrains.anko.startActivity
 
 @Route(path = RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
 class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConfirmView {
@@ -56,7 +57,7 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConf
         }
 
         mSelectShipTv.onClick {
-            //
+            startActivity<ShipAddressActivity>()
         }
 
         mSubmitOrderBtn.onClick {
