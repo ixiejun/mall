@@ -176,10 +176,9 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     //提交购物车回调
     override fun onSubmitCartListResult(result: Int) {
-        toast("$result")
-        /*ARouter.getInstance().build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
+        ARouter.getInstance().build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
                 .withInt(ProviderConstant.KEY_ORDER_ID, result)
-                .navigation()*/
+                .navigation()
     }
 
     //更新总价

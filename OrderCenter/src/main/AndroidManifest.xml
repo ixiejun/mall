@@ -1,2 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.newhua.order" />
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.newhua.order">
+
+    <application
+        android:allowBackup="true"
+        android:label="OrderCenter"
+        android:supportsRtl="true"
+        tools:replace="android:label">
+
+        <activity android:name=".ui.activity.OrderConfirmActivity"/>
+    </application>
+
+</manifest>
