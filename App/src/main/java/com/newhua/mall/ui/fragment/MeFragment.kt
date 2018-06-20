@@ -10,10 +10,14 @@ import com.newhua.mall.base.ext.onClick
 import com.newhua.mall.base.ui.fragment.BaseFragment
 import com.newhua.mall.base.utils.AppPrefsUtils
 import com.newhua.mall.provider.common.ProviderConstant
+import com.newhua.mall.provider.common.afterLogin
 import com.newhua.mall.provider.common.isLogined
 import com.newhua.mall.ui.activity.SettingActivity
 import com.newhua.mall.user.ui.activity.LoginActivity
 import com.newhua.mall.user.ui.activity.UserInfoActivity
+import com.newhua.order.common.OrderConstant
+import com.newhua.order.common.OrderStatus
+import com.newhua.order.ui.activity.OrderActivity
 import com.newhua.order.ui.activity.ShipAddressActivity
 import kotlinx.android.synthetic.main.fragment_me.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -82,6 +86,24 @@ class MeFragment : BaseFragment(), View.OnClickListener {
                     startActivity<UserInfoActivity>()
                 } else {
                     startActivity<LoginActivity>()
+                }
+            }
+
+            R.id.mWaitPayOrderTv -> {
+                startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
+            }
+
+            R.id.mWaitConfirmOrderTv -> {
+                startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
+            }
+
+            R.id.mCompleteOrderTv -> {
+                startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
+            }
+
+            R.id.mAllOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>()
                 }
             }
 
