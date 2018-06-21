@@ -1,6 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+}
 
 android {
     compileSdkVersion 25
@@ -14,6 +21,18 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.newhua.mall",
+                JPUSH_APPKEY : "353fb9dff9cc277222606b5d", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
 
     }
 
@@ -34,6 +53,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':Provider')
+    implementation project(':BaseLibrary')
+    implementation project(':OrderCenter')
 
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
@@ -41,6 +62,13 @@ dependencies {
     implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
     // Appcompat-v7 (only Anko Commons)
     implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
+
+    compile 'cn.jiguang.sdk:jpush:3.0.9'  // 此处以JPush 3.0.9 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.1.7'  // 此处以JCore 1.1.7 版本为例。
+    //Dagger2
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //ARouter
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 
     if (isUserModule.toBoolean()) {
         compile project(':UserCenter')

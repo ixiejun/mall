@@ -7,7 +7,7 @@ import com.newhua.mall.base.injection.component.AppComponent
 import com.newhua.mall.base.injection.component.DaggerAppComponent
 import com.newhua.mall.base.injection.module.AppModule
 
-class BaseApplication :Application() {
+open class BaseApplication :Application() {
 
     lateinit var appComponent: AppComponent
 

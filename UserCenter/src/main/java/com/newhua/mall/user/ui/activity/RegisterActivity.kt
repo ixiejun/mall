@@ -2,7 +2,6 @@ package com.newhua.mall.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import com.newhua.mall.base.common.AppManager
 import com.newhua.mall.base.ext.enable
 import com.newhua.mall.base.ext.onClick
 import com.newhua.mall.base.ui.activity.BaseMvpActivity
@@ -19,13 +18,12 @@ import org.jetbrains.anko.toast
  */
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
 
-    private var pressTime: Long  = 0
-
     /**
      * 注册回调
      */
     override fun onRegisterResult(result: String) {
         toast(result)
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,20 +60,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
                 .inject(this)
 
         mPresenter.mView = this
-    }
-
-    /**
-     * 双击两次退出
-     */
-    override fun onBackPressed() {
-        val time = System.currentTimeMillis()
-        if (time - pressTime > 2000) {
-            toast("再按一次退出程序")
-            pressTime = time
-        } else {
-            AppManager.instance.exitApp(this)
-        }
-
     }
 
     override fun onClick(v: View) {

@@ -11,20 +11,25 @@ import com.newhua.goods.event.UpdateCartSizeEvent
 import com.newhua.goods.ui.fragment.CartFragment
 import com.newhua.goods.ui.fragment.CategoryFragment
 import com.newhua.mall.R
+import com.newhua.mall.base.common.AppManager
 import com.newhua.mall.base.utils.AppPrefsUtils
+import com.newhua.mall.provider.event.MessageBadgeEvent
 import com.newhua.mall.ui.fragment.HomeFragment
 import com.newhua.mall.ui.fragment.MeFragment
+import com.newhua.message.ui.fragment.MessageFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private var pressTime: Long = 0
 
     private val mStack = Stack<Fragment>()
 
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
     private val mCartFragment by lazy { CartFragment() }
-    private val mMsgFragment by lazy { HomeFragment() }
+    private val mMsgFragment by lazy { MessageFragment() }
     private val mMeFragment by lazy { MeFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         loadCartSize()
     }
 
+    //初始化Fragment栈管理
     private fun initFragment() {
         val manager = supportFragmentManager.beginTransaction()
         manager.add(R.id.mContaier, mHomeFragment)
@@ -74,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+        mBottomNavBar.checkMsgBadge(false)
     }
 
     private fun changeFragment(position: Int) {
@@ -92,14 +99,38 @@ class MainActivity : AppCompatActivity() {
                 .subscribe(){
                     loadCartSize()
                 }.registerInBus(this)
+
+        Bus.observe<MessageBadgeEvent>()
+                .subscribe {
+                    t: MessageBadgeEvent ->
+                    run {
+                        mBottomNavBar.checkMsgBadge(t.isVisible)
+                    }
+                }.registerInBus(this)
     }
 
+    //加载购物车数量
     private fun loadCartSize() {
         mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
     }
 
+    //取消Bus监听
     override fun onDestroy() {
         super.onDestroy()
         Bus.unregister(this)
+    }
+
+    /**
+     * 双击两次退出
+     */
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast("再按一次退出程序")
+            pressTime = time
+        } else {
+            AppManager.instance.exitApp(this)
+        }
+
     }
 }

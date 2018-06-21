@@ -2,10 +2,12 @@ package com.newhua.mall.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.newhua.mall.base.ext.enable
 import com.newhua.mall.base.ext.onClick
 import com.newhua.mall.base.ui.activity.BaseMvpActivity
+import com.newhua.mall.provider.PushProvider
 import com.newhua.mall.provider.router.RouterPath
 import com.newhua.mall.user.R
 import com.newhua.mall.user.R.id.*
@@ -25,6 +27,9 @@ import org.jetbrains.anko.toast
 @Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
+    @Autowired(name = RouterPath.MessageCenter.PATH_MESSAGE_PUSH)
+    @JvmField
+    var mPushProvider: PushProvider? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +68,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
             R.id.mRightTv -> {startActivity<RegisterActivity>()}
 
             R.id.mLoginBtn -> {
-                mPresenter.login(mMobileEt.text.toString(),mPwdEt.text.toString(),"")
+                mPresenter.login(mMobileEt.text.toString(),mPwdEt.text.toString(),mPushProvider?.getPushId()?:"")
             }
             R.id.mForgetPwdTv ->{
                 startActivity<ForgetPwdActivity>()
